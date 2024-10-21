@@ -1,0 +1,102 @@
+.search {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    h1 {
+        font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 40px;
+        width: fit-content;
+    }
+
+    input {
+        width: auto;
+    }
+}
+
+.full_page {
+    display: grid;
+    padding: 14px;
+    width: auto;
+    grid-template-columns: 50% 50%;
+
+    .yuriy {
+        .phone_card {
+            border: solid 3px #05a33a;
+        }
+
+        .name_label {
+            color: #055e22;
+        }
+    }
+
+    .singa {
+        .phone_card {
+            border: solid 3px #0096a9;
+        }
+
+        .name_label {
+            color: #105CA3;
+        }
+    }
+
+    .half_page {
+        display: grid;
+        justify-content: center;
+        align-content:flex-start;
+        padding: 14px;
+        width: auto;
+        gap: 15px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .phone_card {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border-radius: 6px;
+        width: 220px;
+        height: 260px;
+        /* margin: 15px; */
+    }
+
+    img {
+        width: 200px;
+        height: 150px;
+        margin: 10px;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+
+    .price_label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    h1 {
+        font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+        margin: 0 10px 10px;
+    }
+}
+
+td {
+    border: 1px solid #000;
+}
+
+tr th:last-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.px-5 {
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}

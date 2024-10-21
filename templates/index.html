@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script></script>
+</head>
+
+<body>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+
+    <div>
+        <div class="search">
+            <h1>SINGA.ПОИСК</h1>
+            <input type="text" id="name" name="name" size="15" oninput="search(this.value)" />
+        </div>
+        <div class="full_page">
+            <div class="half_page yuriy">
+                {% for row in tableYuriyData %}
+                <div class="phone_card">
+                    <a style="display:block" href="{{row['link']}}" target="_blank">
+                        <img src="{{row['picture']}}">
+                    </a>
+                    <h1 class="name_label">{{row['name']}}</h1>
+                    <br>
+                    <h1 class="price_label">{{row['price']}} ₽</h1>
+                </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="half_page singa">
+                {% for row in tableSingaData %}
+
+                <div class="phone_card">
+                    <a style="display:block" href="{{row['link']}}" target="_blank">
+                        <img src="{{row['picture']}}">
+                    </a>
+                    <h1 class="name_label">{{row['name']}}</h1>
+                    <br>
+                    <h1 class="price_label">{{row['price']}} ₽</h1>
+                </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function search(search) {
+            if (search == "") {
+                for (const name of document.querySelectorAll('.name_label')) {
+                    name.parentElement.style.display = 'flex';
+                }
+            }
+
+            for (const name of document.querySelectorAll('.name_label')) {
+                if (!name.textContent.toLowerCase().includes(search.toLowerCase())) {
+                    name.parentElement.style.display = "none";
+                } else {
+                    name.parentElement.style.display = "flex";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
