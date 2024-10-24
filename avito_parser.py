@@ -3,6 +3,8 @@ import ssl
 import cloudscraper
 from requests.adapters import HTTPAdapter, PoolManager
 from urllib3.util import ssl_
+import requests
+import certifi
 
 import json
 
@@ -20,7 +22,7 @@ class TlsAdapter(HTTPAdapter):
 adapter = TlsAdapter(ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1)
 
 scraper = cloudscraper.create_scraper(delay=10, browser={'custom': 'ScraperBot/1.0'})
-scraper.mount("https://", adapter)
+scraper.mount("https://", TlsAdapter(ssl.OP_NO_SSLv3))
 
 url = 'https://www.avito.ru/web/1/profile/items'
 
@@ -51,8 +53,8 @@ def make_request(seller_id, page):
     'sellerId': seller_id,
     'limit': 12
 }
-    r = scraper.get(url, params=params, headers=headers)
 
+    r = requests.get("https://www.avito.ru/web/1/profile/items", params=params, headers=headers, verify=False)
     if r.status_code < 400:
         return r.json()
 

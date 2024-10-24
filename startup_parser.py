@@ -2,6 +2,7 @@ from avito_parser import make_request
 from math import ceil
 from sqlalchemy.orm import Session
 from db import engine, YuraPrice, SingaPrice
+import certifi
 
 page = 0
 yura_id = '0793f8fa8904c8f8c986a1f1d341baba'
@@ -43,6 +44,8 @@ def check_Singa():
                 db.commit()
                 break
 
-# check_Yura()
+check_Yura()
 
 check_Singa()
+
+# print(certifi.core.where())
