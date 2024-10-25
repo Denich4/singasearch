@@ -52,11 +52,14 @@ def make_request(seller_id, page):
     'p' : page,
     'sellerId': seller_id,
     'limit': 12
-}
+    }
 
     r = requests.get("https://www.avito.ru/web/1/profile/items", params=params, headers=headers, verify=False)
-    if r.status_code < 400:
+
+    if (r.status_code < 400):
         return r.json()
+    else: 
+        return json.loads('{"error": 403}')
 
 # json_object = json.dumps(r.json, indent=4)
 

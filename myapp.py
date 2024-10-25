@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request 
 from db import engine, YuraPrice, SingaPrice
 from sqlalchemy.orm import Session
+from startup_parser import last_update
+from flask_apscheduler import APScheduler
+from startup_parser import check_Yura, check_Singa
+
+scheduler = APScheduler()
+
+@scheduler.task("cron", id="do_job_1", hour='10,14,19')
+def job1():
+    check_Singa()
+    check_Yura()
+
 
 app = Flask(__name__)
 
@@ -23,8 +34,12 @@ def home():
     return render_template(
         'index.html',
         tableYuriyData=tableYuriyData,
-        tableSingaData=tableSingaData 
+        tableSingaData=tableSingaData,
+        date=last_update
     )
 
 if __name__ == '__main__':
+    scheduler.api_enabled = True
+    scheduler.init_app(app)   
+    scheduler.start()
     app.run(host='0.0.0.0')
