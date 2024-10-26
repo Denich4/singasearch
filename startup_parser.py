@@ -2,19 +2,18 @@ from avito_parser import make_request
 from math import ceil
 from sqlalchemy.orm import Session
 from db import engine, YuraPrice, SingaPrice
-import certifi
-import datetime
+from time_util import get_now
+import time
 
-last_update = datetime.datetime.now()
+last_update = { "yura": get_now(), "singa": get_now()}
 yura_id = '0793f8fa8904c8f8c986a1f1d341baba'
 singa_id = '0306b2a6e58801c9b0e6684a1435a505'
 
-def update_date(is_error = False):
+def update_date(seller, is_error = False):
     global last_update
     if not is_error:
-        last_update = datetime.datetime.now()
-    else:
-        last_update = "error"
+        last_update[seller] = get_now()
+    else: print('ошибка')
 
 def get_date():
     global last_update
@@ -23,8 +22,10 @@ def get_date():
 def check_uni(seller_id):
     if (seller_id == yura_id): # ПЕРЕДЕЛАТЬ А ТО ЭТО КРИНЖ
         TempTable = YuraPrice
+        seller = "yura"
     elif (seller_id == singa_id):
         TempTable = SingaPrice
+        seller = "singa"
         
     with Session(autoflush=False, bind=engine) as db:    
         page = 1
@@ -34,13 +35,12 @@ def check_uni(seller_id):
             r = make_request(seller_id, page)
             
             if ('error' in r):
-                update_date(is_error=True)
                 break
             
             if (not did_delete): 
                 db.query(TempTable).delete()
                 db.commit()
-                update_date()
+                update_date(seller=seller)
                 did_delete = True
             
             if (page == 1) : total = ceil(r['totalCount'] / 12)
@@ -53,7 +53,7 @@ def check_uni(seller_id):
                 db.commit()
                 break
             
-            datetime.time.sleep(10)
+            time.sleep(10)
 
 def check_Yura():
     check_uni(yura_id)

@@ -3,7 +3,7 @@
     align-content: center;
     justify-content: center;
 
-    h1 {
+    h2 {
         font-family: 'Trebuchet MS', Helvetica, sans-serif;
         font-weight: bold;
         font-size: 40px;
@@ -22,6 +22,7 @@
     grid-template-columns: 50% 50%;
 
     .yuriy {
+        background-color: #055e2354;
         .phone_card {
             border: solid 3px #05a33a;
         }
@@ -32,6 +33,7 @@
     }
 
     .singa {
+        background-color: #105CA354;
         .phone_card {
             border: solid 3px #0096a9;
         }
@@ -42,13 +44,21 @@
     }
 
     .half_page {
+        border-radius: 15px;
         display: grid;
         justify-content: center;
-        align-content:flex-start;
+        align-content: flex-start;
         padding: 14px;
         width: auto;
         gap: 15px;
         grid-template-columns: 1fr 1fr 1fr;
+
+        .date_update {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            justify-self: center;
+            margin: 0;
+        }
     }
 
     .phone_card {
@@ -56,30 +66,37 @@
         flex-direction: column;
         position: relative;
         border-radius: 6px;
-        width: 220px;
-        height: 260px;
+        height: auto;
+        width: auto;
+        min-width: 140px;
+        aspect-ratio: 11/13;
         /* margin: 15px; */
-    }
 
-    img {
-        width: 200px;
-        height: 150px;
-        margin: 10px;
-        object-fit: cover;
-        object-position: 50% 50%;
-    }
+        img {
+            width: 94%;
+            height: auto;
+            aspect-ratio: 4/3;
+            margin: 3%;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
 
-    .price_label {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
+        .name_label {
+            font-family: 'Trebuchet MS', Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            margin: 0 10px 10px;
+        }
 
-    h1 {
-        font-family: 'Trebuchet MS', Helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 15px;
-        margin: 0 10px 10px;
+        .price_label {
+            font-family: 'Trebuchet MS', Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            position: absolute;
+            margin: 0 10px 10px;
+            bottom: 0;
+            left: 0;
+        }
     }
 }
 
@@ -99,4 +116,189 @@ tr th:last-child {
 a {
     text-decoration: none;
     color: #000;
+}
+
+@media (min-width: 1890px) {
+    .full_page {
+        .half_page {
+            padding: 20px;
+            gap: 20px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+
+            .date_update {
+                grid-column-start: 1;
+                grid-column-end: 5;
+            }
+        }
+    }
+}
+
+@media (min-width: 1630px) and (max-width: 1889px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 17px;
+            }
+
+            .price_label {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1420px) and (max-width: 1629px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 15px;
+            }
+
+            .price_label {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1350px) and (max-width: 1419px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 14px;
+            }
+
+            .price_label {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (min-width: 850px) and (max-width: 1349px) {
+    .full_page {
+        .half_page {
+            padding: 8px;
+            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+
+            .date_update {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        }
+    }
+}
+
+@media (min-width: 1070px) and (max-width: 1349px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 18px;
+            }
+
+            .price_label {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@media (min-width: 850px) and (max-width: 930px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 13px;
+            }
+
+            .price_label {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+@media (max-width: 849px) {
+    .full_page {
+        .half_page {
+            padding: 8px;
+            gap: 10px;
+            grid-template-columns: 1fr;
+
+            .date_update {
+                grid-column-start: 1;
+                grid-column-end: 2;
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 849px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 17px;
+            }
+
+            .price_label {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+@media (min-width: 560px) and (max-width: 599px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 16px;
+            }
+
+            .price_label {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (min-width: 500px) and (max-width: 559px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 15px;
+            }
+
+            .price_label {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media (min-width: 445px) and (max-width: 499px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 13px;
+            }
+
+            .price_label {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+@media (min-width: 10px) and (max-width: 444px) {
+    .full_page {
+        .phone_card {
+            .name_label {
+                font-size: 10px;
+            }
+
+            .price_label {
+                font-size: 10px;
+            }
+        }
+    }
 }
