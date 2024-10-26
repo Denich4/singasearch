@@ -36,8 +36,9 @@ def home():
         date=date
     )
 
+scheduler.api_enabled = True
+scheduler.init_app(app)   
+scheduler.start()
+
 if __name__ == '__main__':
-    scheduler.api_enabled = True
-    scheduler.init_app(app)   
-    scheduler.start()
     app.run(host='0.0.0.0')

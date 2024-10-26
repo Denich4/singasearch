@@ -52,6 +52,8 @@ def check_uni(seller_id):
             if (page == (total+1)) : 
                 db.commit()
                 break
+            
+            datetime.time.sleep(10)
 
 def check_Yura():
     check_uni(yura_id)
