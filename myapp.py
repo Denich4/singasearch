@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request 
 from db import engine, YuraPrice, SingaPrice
 from sqlalchemy.orm import Session
-from startup_parser import last_update
 from flask_apscheduler import APScheduler
-from startup_parser import check_Yura, check_Singa
+from startup_parser import check_Yura, check_Singa, get_date
 
 scheduler = APScheduler()
 
@@ -12,12 +11,11 @@ def job1():
     check_Singa()
     check_Yura()
 
-
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    
+    date=get_date()
     tableYuriyData = []
     tableSingaData = []
         
@@ -35,7 +33,7 @@ def home():
         'index.html',
         tableYuriyData=tableYuriyData,
         tableSingaData=tableSingaData,
-        date=last_update
+        date=date
     )
 
 if __name__ == '__main__':

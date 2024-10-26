@@ -9,6 +9,17 @@ last_update = datetime.datetime.now()
 yura_id = '0793f8fa8904c8f8c986a1f1d341baba'
 singa_id = '0306b2a6e58801c9b0e6684a1435a505'
 
+def update_date(is_error = False):
+    global last_update
+    if not is_error:
+        last_update = datetime.datetime.now()
+    else:
+        last_update = "error"
+
+def get_date():
+    global last_update
+    return last_update
+
 def check_uni(seller_id):
     if (seller_id == yura_id): # ПЕРЕДЕЛАТЬ А ТО ЭТО КРИНЖ
         TempTable = YuraPrice
@@ -23,13 +34,13 @@ def check_uni(seller_id):
             r = make_request(seller_id, page)
             
             if ('error' in r):
-                last_update = "ошибка"
+                update_date(is_error=True)
                 break
             
             if (not did_delete): 
                 db.query(TempTable).delete()
                 db.commit()
-                last_update = datetime.datetime.now()
+                update_date()
                 did_delete = True
             
             if (page == 1) : total = ceil(r['totalCount'] / 12)
