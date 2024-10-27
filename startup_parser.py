@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from db import engine, YuraPrice, SingaPrice
 from time_util import get_now
 import time
+import random
 
 last_update = { "yura": get_now(), "singa": get_now()}
 yura_id = '0793f8fa8904c8f8c986a1f1d341baba'
@@ -53,7 +54,7 @@ def check_uni(seller_id):
                 db.commit()
                 break
             
-            time.sleep(10)
+            time.sleep(random.random() + 0.5)
 
 def check_Yura():
     check_uni(yura_id)
@@ -61,8 +62,8 @@ def check_Yura():
 def check_Singa():
     check_uni(singa_id)
 
-# check_Yura()
-
-# check_Singa()
+check_Yura()
+time.sleep(random.random() + 0.5)
+check_Singa()
 
 # print(certifi.core.where())
